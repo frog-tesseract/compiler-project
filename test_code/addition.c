@@ -1,4 +1,3 @@
-
 //This is a comment
 int main(){
   int a = 1;

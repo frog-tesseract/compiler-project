@@ -63,20 +63,25 @@ int main(int argc, char* argv[])
   char** tokens = malloc(sizeof(char*) * FILEBUFF);
   int size = 0;
 
-  char* token = strtok(line, " ");
-  while (token != NULL)
-  {
-    addToken(&tokens, token, &size);
-    token = strtok(NULL, " ");
-  }
 
-  tokenDisp(tokens, size);
+  while (fgets(line, FILEBUFF, file) != NULL)
+  {
+    char* token = strtok(line, " ");
+    while (token != NULL)
+    {
+      addToken(&tokens, token, &size);
+      token = strtok(NULL, " ");
+    }
+    tokenDisp(tokens, size);
+  }
+  //tokenDisp(tokens, size);
 
   //Save my poor memory
   fclose(file);
   free(line);
 
-  // END: ensure it works for all lines, itterate through and add to tokeniser.
+  // END: tokens arr is double counting some tokens and concatinating others aswell
+  //double check size and realloc as it may be upon ptr switch.
 
   //printf("Input: %s\n", argv[1]);
   return 0;
